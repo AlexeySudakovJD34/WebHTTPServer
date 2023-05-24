@@ -27,7 +27,7 @@ public class Processor implements Runnable {
 
             processRequest(in, out);
 
-        } catch (IOException | URISyntaxException | HttpFormatException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -39,7 +39,7 @@ public class Processor implements Runnable {
     }
 
     private void processRequest(BufferedReader in, BufferedOutputStream out)
-            throws IOException, URISyntaxException, HttpFormatException {
+            throws IOException, URISyntaxException {
 
         StringBuilder requestBuilder = new StringBuilder();
         String line;
@@ -50,6 +50,13 @@ public class Processor implements Runnable {
         String requestLine = requestBuilder.toString();
 
         Request request = parser.parseRequest(requestLine);
+
+        if (!handlers.containsKey(request.getMethod())) {
+            ResponseUtils.sendMethodNotAllowed(out);
+        }
+        if (!request.getPath().startsWith("/")) {
+            ResponseUtils.sendBadRequest(out);
+        }
 
         Handler handler = handlers.get(request.getMethod()).get(request.getPath());
 

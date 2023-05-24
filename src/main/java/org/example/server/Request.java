@@ -1,6 +1,5 @@
 package org.example.server;
 
-import java.util.Hashtable;
 import java.util.List;
 
 public class Request {
