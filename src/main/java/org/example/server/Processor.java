@@ -10,9 +10,9 @@ import java.util.*;
 
 public class Processor implements Runnable {
 
-    private Socket socket;
-    private Map<String, Map<String, Handler>> handlers;
-    private HttpRequestParser parser;
+    private final Socket socket;
+    private final Map<String, Map<String, Handler>> handlers;
+    private final HttpRequestParser parser;
 
     public Processor(Socket socket, Map<String, Map<String, Handler>> handlers) {
         this.socket = socket;
@@ -44,7 +44,7 @@ public class Processor implements Runnable {
         StringBuilder requestBuilder = new StringBuilder();
         String line;
         while (!(line = in.readLine()).isBlank()) {
-            requestBuilder.append(line + "\r\n");
+            requestBuilder.append(line).append("\r\n");
         }
 
         String requestLine = requestBuilder.toString();

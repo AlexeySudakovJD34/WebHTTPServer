@@ -11,14 +11,14 @@ import java.util.concurrent.Executors;
 
 public class Server {
 
-    private final int port = 9999;
     private final List<String> allowedMethods = List.of("GET", "POST");
-    private Map<String, Map<String, Handler>> handlers = new ConcurrentHashMap<>(
+    private final Map<String, Map<String, Handler>> handlers = new ConcurrentHashMap<>(
             Map.of(allowedMethods.get(0), new ConcurrentHashMap<>(),
                     allowedMethods.get(1), new ConcurrentHashMap<>()));
 
     public void listen() {
         ExecutorService executor = Executors.newFixedThreadPool(64);
+        int port = 9999;
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
                 Socket socket = serverSocket.accept();

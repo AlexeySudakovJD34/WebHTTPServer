@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HttpRequestParser {
-    private Request resultRequest;
+    private final Request resultRequest;
 
     public HttpRequestParser() {
         this.resultRequest = new Request();
