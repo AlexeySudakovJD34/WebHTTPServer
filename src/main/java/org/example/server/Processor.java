@@ -94,7 +94,7 @@ public class Processor implements Runnable {
         String[] params = request.getBody().split("&");
         for (String param : params) {
             String[] prm = param.split("=");
-            // Складываем POST-параметры в список NameValuePair
+            // Складываем POST-параметры в список пар NameValuePair
             postParams.add(new BasicNameValuePair(prm[0], prm[1]));
         }
         request.setPostParams(postParams);
