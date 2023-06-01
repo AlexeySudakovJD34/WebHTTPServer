@@ -32,9 +32,9 @@ public class Server {
 
     public void addHandler(String method, String path, Handler handler) {
         if (!allowedMethods.contains(method)) {
-            System.out.println("Not allowed method!");
+            System.out.println("Не разрешенный метод!");
         }
         handlers.get(method).put(path, handler);
-        System.out.printf("Handler for '%s %s' added!\n", method, path);
+        System.out.printf("Обработчик для '%s %s' добавлен!\n", method, path);
     }
 }
